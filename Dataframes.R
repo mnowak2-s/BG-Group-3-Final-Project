@@ -18,4 +18,3 @@ Sym_of_dep_df <- dataframe %>%
 
 Sym_of_or_df <- dataframe %>% 
   filter(Indicator == "Symptoms of Anxiety Disorder or Depressive Disorder")
-
