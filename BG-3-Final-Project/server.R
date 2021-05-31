@@ -10,6 +10,7 @@ shinyServer(function(input, output) {
         hist(x, breaks = bins, col = 'darkgray', border = 'white')
     })
     
+    ## Data for the histogram
     edit_or_data <- Sym_of_or_df %>% 
         filter(Group == "By State") %>% 
         group_by(State) %>% 
@@ -23,7 +24,7 @@ shinyServer(function(input, output) {
     output$plot <- renderPlot({
         ggplot(data = edit_or_data, aes(x = State, y = Diff_percent), stat=identity) +
             geom_bar(stat = "identity", fill = edit_or_data$Phase, show.legend = TRUE) + 
-            geom_abline(mapping = NULL, data = NULL, slope = 0, yint = 0, col = "white")
+            geom_abline(mapping = NULL, data = NULL, slope = 0, intercept = 0, col = "white")
     })
     
     output$xValDisplay <- renderUI({
