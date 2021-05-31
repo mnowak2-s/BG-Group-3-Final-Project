@@ -9,7 +9,7 @@ shinyServer(function(input, output) {
     edit_or_data <- reactive({
         if(is.null(input$typeData)){
             Sym_of_or_df %>% 
-            filter(Group == "By State") %>% 
+            filter(Group == "By State", Indicator == input$typeData) %>% 
             group_by(State) %>% 
             arrange(State, Phase) %>% 
             mutate(Diff_percent = Value - lag(Value), 
