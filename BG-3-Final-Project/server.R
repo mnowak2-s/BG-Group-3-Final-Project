@@ -31,4 +31,10 @@ shinyServer(function(input, output) {
         radioButtons("xValTypes", label = "Categories of data", 
                      choices = unique(Sym_of_or_df$Group), selected = "By State")
     })
+    
+    output$selectType <- renderUI({
+        selectInput("typeData", label = "Type of data", 
+                    choices = list("Symptoms of Anxiety" = 1, "Symptoms of Depression" = 2, "Symptoms of Anxiety or Depression" = 3), 
+                    selected = 1)
+    })
 })

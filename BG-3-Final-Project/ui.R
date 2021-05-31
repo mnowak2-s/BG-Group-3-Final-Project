@@ -9,7 +9,8 @@ shinyUI(fluidPage(
                         min = 1,
                         max = 50,
                         value = 30),
-            uiOutput("xValDisplay")
+            uiOutput("xValDisplay"),
+            uiOutput("selectType")
         ),
         mainPanel(
             plotOutput("plot")
