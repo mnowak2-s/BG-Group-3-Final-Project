@@ -8,7 +8,15 @@ shinyUI(fluidPage(
             uiOutput("selectType")
         ),
         mainPanel(
-            plotOutput("plot")
+            tabsetPanel(
+                tabPanel("Introduction",
+                         ## Introduction to data set and the project
+                ), 
+                tabPanel("Plot and insight",
+                         plotOutput("plot")
+                         ## explanation of findings 
+                         )
+            )
         )
     )
 ))
