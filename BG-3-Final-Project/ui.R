@@ -1,7 +1,7 @@
 library(shiny)
 
 shinyUI(fluidPage(
-    titlePanel("Old Faithful Geyser Data"),
+    titlePanel("Rates of Anxiety or Depression Symptoms during Covid-19"),
     sidebarLayout(
         sidebarPanel(
             sliderInput("bins",
@@ -11,7 +11,7 @@ shinyUI(fluidPage(
                         value = 30)
         ),
         mainPanel(
-            plotOutput("distPlot")
+            plotOutput("plot")
         )
     )
 ))
