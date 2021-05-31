@@ -5,7 +5,7 @@ source("Dataframes.R")
 
 shinyServer(function(input, output) {
     
-    ## Data for the histogram
+    ## Data for the histogram, need to figure out how to put widget data into this
     edit_or_data <- reactive({
         if(is.null(input$typeData)){
             Sym_of_or_df %>% 
@@ -34,6 +34,7 @@ shinyServer(function(input, output) {
             geom_abline(mapping = NULL, data = NULL, slope = 0, intercept = 0, col = "white")
     })
     
+    # Still needs to be implemented to work with graph
     output$xValDisplay <- renderUI({
         radioButtons("xValTypes", label = "Categories of data", 
                      choices = unique(dataframe$Group), selected = "By State")
