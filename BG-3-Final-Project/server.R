@@ -4,11 +4,6 @@ library(tidyverse)
 source("Dataframes.R")
 
 shinyServer(function(input, output) {
-    output$distPlot <- renderPlot({
-        x    <- faithful[, 2]
-        bins <- seq(min(x), max(x), length.out = input$bins + 1)
-        hist(x, breaks = bins, col = 'darkgray', border = 'white')
-    })
     
     ## Data for the histogram
     edit_or_data <- reactive({
@@ -41,7 +36,7 @@ shinyServer(function(input, output) {
     
     output$xValDisplay <- renderUI({
         radioButtons("xValTypes", label = "Categories of data", 
-                     choices = unique(edit_or_data()$Group), selected = "By State")
+                     choices = unique(dataframe$Group), selected = "By State")
     })
     
     output$selectType <- renderUI({
