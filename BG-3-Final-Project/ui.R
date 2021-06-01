@@ -16,7 +16,10 @@ shinyUI(fluidPage(
                 tabPanel("Plot and insight",
                          plotOutput("plot")
                          ## explanation of findings 
-                )
+                ),
+                tabPanel("Conclusion",
+                         #Conclusion R markdown file here
+                         )
             )
         )
     )
