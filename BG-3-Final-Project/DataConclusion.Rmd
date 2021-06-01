@@ -1,0 +1,10 @@
+---
+title: "Conclusion for the Data"
+author: "Madeleine Nowak, Makenzie Edwards, Bella Lee, and Kyle Raychel"
+date: "6/1/2021"
+output: html_document
+---
+
+## Takeaways
+
+## Future Ideas
