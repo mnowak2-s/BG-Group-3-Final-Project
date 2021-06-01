@@ -10,12 +10,13 @@ shinyUI(fluidPage(
         mainPanel(
             tabsetPanel(
                 tabPanel("Introduction",
+                         includeMarkdown("DataIntro.Rmd")
                          ## Introduction to data set and the project
                 ), 
                 tabPanel("Plot and insight",
                          plotOutput("plot")
                          ## explanation of findings 
-                         )
+                )
             )
         )
     )
