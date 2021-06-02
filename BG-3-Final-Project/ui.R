@@ -10,11 +10,27 @@ shinyUI(navbarPage("Rates of Anxiety or Depression Symptoms during Covid-19",
                                     uiOutput("selectType")
                                 ),
                                 mainPanel(
-                                    plotOutput("plot")
+                                    plotOutput("plot_or")
                                 )
                             )),
-                   tabPanel("Anxiety Plot and Insight"),
-                   tabPanel("Depression Plot and Insight"),
+                   tabPanel("Anxiety Plot and Insight",
+                            sidebarLayout(
+                              sidebarPanel(
+                                
+                              ),
+                              mainPanel(
+                                plotOutput("plot_anx")
+                              )
+                            )),
+                   tabPanel("Depression Plot and Insight",
+                            sidebarLayout(
+                              sidebarPanel(
+                                
+                              ),
+                              mainPanel(
+                                plotOutput("plot_dep")
+                              )
+                            )),
                    tabPanel("Conclusion",
                             includeMarkdown("DataConclusion.Rmd"))
 )

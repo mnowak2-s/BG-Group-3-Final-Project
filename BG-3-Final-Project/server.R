@@ -28,7 +28,7 @@ shinyServer(function(input, output) {
         }
     })
     
-    output$plot <- renderPlot({
+    output$plot_anx <- output$plot_dep <- output$plot_or <- renderPlot({
         ggplot(data = edit_or_data(), aes(x = State, y = Diff_percent)) +
             geom_bar(stat = "identity", fill = edit_or_data()$Phase, show.legend = TRUE) + 
             geom_abline(mapping = NULL, data = NULL, slope = 0, intercept = 0, col = "white")
@@ -42,6 +42,7 @@ shinyServer(function(input, output) {
     
     output$selectType <- renderUI({
         selectInput("typeData", label = "Type of data", 
-                    choices = unique(dataframe$Indicator))
+                    choices = unique(dataframe$Indicator), 
+                    selected = "Symptoms of Anxiety Disorder or Depressive Disorder")
     })
 })
