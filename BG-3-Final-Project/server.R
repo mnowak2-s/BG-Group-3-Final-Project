@@ -17,10 +17,6 @@ shinyServer(function(input, output) {
                    Diff_percent = case_when(row_number() == 1 ~ Value, TRUE ~ Diff_percent))
     })
     
-    outVar <- reactive({
-        
-    })
-    
     # Plot output
     output$plot_anx <- output$plot_dep <- output$plot_or <- renderPlot({
         ggplot(data = edit_or_data(), aes(x = State, y = Diff_percent)) +
