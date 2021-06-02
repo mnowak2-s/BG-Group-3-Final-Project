@@ -1,26 +1,19 @@
 library(shiny)
 
-shinyUI(fluidPage(
-    titlePanel("Rates of Anxiety or Depression Symptoms during Covid-19"),
-    sidebarLayout(
-        sidebarPanel(
-            uiOutput("xValDisplay"),
-            uiOutput("selectType")
-        ),
-        mainPanel(
-            tabsetPanel(
-                tabPanel("Introduction",
-                         includeMarkdown("DataIntro.Rmd")
-                         ## Introduction to data set and the project
-                ), 
-                tabPanel("Plot and insight",
-                         plotOutput("plot")
-                         ## explanation of findings 
-                ),
-                tabPanel("Conclusion",
-                         #Conclusion R markdown file here
-                         )
-            )
-        )
-    )
-))
+shinyUI(navbarPage("Rates of Anxiety or Depression Symptoms during Covid-19",
+                   tabPanel("Introduction", 
+                            includeMarkdown("DataIntro.Rmd")),
+                   tabPanel("Total Plot and Insight"),
+                   tabPanel("Anxiety Plot and Insight",
+                            sidebarLayout(
+                                sidebarPanel(
+                                    uiOutput("xValDisplay"),
+                                    uiOutput("selectType")
+                                ),
+                                mainPanel(
+                                    plotOutput("plot")
+                                )
+                            )),
+                   tabPanel("Depression Plot and Insight")
+)
+)
