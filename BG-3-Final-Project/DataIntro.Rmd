@@ -8,7 +8,13 @@ output: html_document
 ## What is our data?
 Our chosen dataset is from the CDC and it contains information about mental health rates among US citizens during the coronavirus pandemic. This data was collected via an online survey, and questions were asked about level of anxiety and depression among respondents. This data set is available online for public view and was conducted to analyze the prevalence of heightened mental health issues during this trying time. The US Census Bureau also assisted in the collection and organization of this data. 
 
-The data can be found [here](https://www.cdc.gov/nchs/covid19/pulse/mental-health.htm)
+The data can be found [here](https://www.cdc.gov/nchs/covid19/pulse/mental-health.htm).
 
 ## Who is our audience? 
+Our target audience would be people who have struggled with mental
+health issues through this pandemic. Although the data that we are looking at can be targeted to multiple groups of people, we think that targeting people who have suffered from these mental health disorders during the pandemic can feel some comfort in knowing they are not alone.
 
+## What we want to learn?
+- How did the percentage of adults who expressed anxiety or depression systems change throughout the pandemic?
+- How did these changes vary by state?
+- Did the changes in rates of anxiety and depression differ throughout the pandemic?
