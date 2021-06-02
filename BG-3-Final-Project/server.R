@@ -9,22 +9,22 @@ shinyServer(function(input, output) {
     edit_or_data <- reactive({
         if(is.null(input$typeData)){
             Sym_of_or_df %>% 
-            filter(Group == "By State", Indicator == input$typeData) %>% 
-            group_by(State) %>% 
-            arrange(State, Phase) %>% 
-            mutate(Diff_percent = Value - lag(Value), 
-                Diff_time = Time.Period - lag(Time.Period),
-                Rate_percent = (Diff_time / Diff_percent)/lag(Time.Period)*100,
-                Diff_percent = case_when(row_number() == 1 ~ Value, TRUE ~ Diff_percent))
+                filter(Group == "By State", Indicator == input$typeData) %>% 
+                group_by(State) %>% 
+                arrange(State, Phase) %>% 
+                mutate(Diff_percent = Value - lag(Value), 
+                       Diff_time = Time.Period - lag(Time.Period),
+                       Rate_percent = (Diff_time / Diff_percent)/lag(Time.Period)*100,
+                       Diff_percent = case_when(row_number() == 1 ~ Value, TRUE ~ Diff_percent))
         } else {
             dataframe%>% 
-            filter(Group == "By State", Indicator == input$typeData) %>% 
-            group_by(State) %>% 
-            arrange(State, Phase) %>% 
-            mutate(Diff_percent = Value - lag(Value), 
-                Diff_time = Time.Period - lag(Time.Period),
-                Rate_percent = (Diff_time / Diff_percent)/lag(Time.Period)*100,
-                Diff_percent = case_when(row_number() == 1 ~ Value, TRUE ~ Diff_percent))
+                filter(Group == "By State", Indicator == input$typeData) %>% 
+                group_by(State) %>% 
+                arrange(State, Phase) %>% 
+                mutate(Diff_percent = Value - lag(Value), 
+                       Diff_time = Time.Period - lag(Time.Period),
+                       Rate_percent = (Diff_time / Diff_percent)/lag(Time.Period)*100,
+                       Diff_percent = case_when(row_number() == 1 ~ Value, TRUE ~ Diff_percent))
         }
     })
     
