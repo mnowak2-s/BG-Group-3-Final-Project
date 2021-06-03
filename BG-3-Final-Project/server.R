@@ -7,7 +7,7 @@ shinyServer(function(input, output) {
     
     ## Data for the histogram, need to figure out how to put widget data into this
     Sym_of_or_df <- dataframe %>% 
-        filter(Group == "By State", Indicator == "Symptoms of Anxiety Disorder or Depressive Disorder", Phase != "-1") %>% 
+        filter(Group == "By State", Indicator == "Symptoms of Anxiety Disorder or Depressive Disorder", Phase == ) %>% 
         group_by(State) %>% 
         arrange(State, Phase) %>% 
         mutate(Diff_percent = Value - lag(Value), 
@@ -69,7 +69,35 @@ shinyServer(function(input, output) {
     })
     output$or_printing <- renderText({
       paste0("The average percentage of respondants with some level of anxiety or depression across the country is ",
-             round(mean(or_by_average()$Value),2), "%. The top 5 states are:")
+             round(mean(or_by_average()$Value),2), "%. Between phases one and two, the rate decreases slightly, 
+             but as the data goes into the beginning of phase 3, the data spikes, probably due to people thinking about
+             the holidays and not being able to spend it with the people they love. It is also the midpoint, meaning the 
+             luxuries the pandemic did give have faded and there is uncertantly for how much longer it will go on.
+             With the start of a new year, the rates drop slightly as a wave of optimism comes with the potential of a better
+             year. They furthur drop as news of a vaccine appears and regulations start slightly lifting.")
     })
+    
+    anx_by_average <- reactive({
+      Sym_of_anx_df <- Sym_of_anx_df %>% 
+        filter(Phase == input$anxPhase) %>% 
+        select(State, Value) %>% 
+        arrange(desc(Value))
+    })
+    output$anx_printing <- renderText({
+      paste0("The average percentage of respondants with some level of anxiety across the country is ",
+             round(mean(anx_by_average()$Value),2), "%.")
+    })
+    
+    dep_by_average <- reactive({
+      Sym_of_dep_df <- Sym_of_dep_df %>% 
+        filter(Phase == input$depPhase) %>% 
+        select(State, Value) %>% 
+        arrange(desc(Value))
+    })
+    output$dep_printing <- renderText({
+      paste0("The average percentage of respondants with some level of depression across the country is ",
+             round(mean(dep_by_average()$Value),2), "%.")
+    })
+    
 
 })
