@@ -1,13 +1,15 @@
 library(shiny)
 
 shinyUI(navbarPage("Rates of Anxiety or Depression Symptoms during Covid-19",
+                   
                    tabPanel("Introduction", 
                             includeMarkdown("DataIntro.Rmd")),
-                   tabPanel("Total Plot and Insight",
+                   tabPanel("Anxiety Or Depression Plot and Insight",
                             sidebarLayout(
                                 sidebarPanel(
-                                    uiOutput("xValDisplay"),
-                                    uiOutput("selectType_or")
+                                  radioButtons("orPhase", label = "Phase of Pandemic", 
+                                               choices = unique(Sym_of_or_df$Phase), 
+                                               selected = "1")
                                 ),
                                 mainPanel(
                                     plotOutput("plot_or")
@@ -16,7 +18,10 @@ shinyUI(navbarPage("Rates of Anxiety or Depression Symptoms during Covid-19",
                    tabPanel("Anxiety Plot and Insight",
                             sidebarLayout(
                               sidebarPanel(
-                                uiOutput("selectType_anx")
+                                radioButtons("anxPhase", label = "Phase of Pandemic", 
+                                             choices = unique(Sym_of_anx_df$Phase), 
+                                             selected = "1")
+                       
                               ),
                               mainPanel(
                                 plotOutput("plot_anx")
@@ -25,7 +30,9 @@ shinyUI(navbarPage("Rates of Anxiety or Depression Symptoms during Covid-19",
                    tabPanel("Depression Plot and Insight",
                             sidebarLayout(
                               sidebarPanel(
-                                uiOutput("selectType_dep")
+                                radioButtons("depPhase", label = "Phase of Pandemic", 
+                                             choices = unique(Sym_of_dep_df$Phase), 
+                                             selected = "1")
                               ),
                               mainPanel(
                                 plotOutput("plot_dep")
