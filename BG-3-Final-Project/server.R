@@ -7,7 +7,7 @@ shinyServer(function(input, output) {
     
     ## Data for the histogram, need to figure out how to put widget data into this
     Sym_of_or_df <- dataframe %>% 
-        filter(Group == "By State", Indicator == "Symptoms of Anxiety Disorder or Depressive Disorder", Phase == ) %>% 
+        filter(Group == "By State", Indicator == "Symptoms of Anxiety Disorder or Depressive Disorder") %>% 
         group_by(State) %>% 
         arrange(State, Phase) %>% 
         mutate(Diff_percent = Value - lag(Value), 
