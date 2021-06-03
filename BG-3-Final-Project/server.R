@@ -39,7 +39,8 @@ shinyServer(function(input, output) {
         small_or_df <- Sym_of_or_df%>% select(State, avg)%>%filter(Phase == input$orPhase)%>%group_by(State)%>%distinct()
         ggplot(data = small_or_df) + 
             geom_bar(mapping = aes(x = State, y = avg), stat = "identity",  show.legend = TRUE)+
-            labs(y = "% of Respondees With Some Level of Anxiety or Depression")
+            labs(y = "% of Respondees With Some Level of Anxiety or Depression") +
+          theme(axis.text.x=element_text(angle = 45))
     })
     
     Sym_of_anx_df <- Sym_of_anx_df%>% group_by(State, Phase)%>% mutate(avg = mean(Value))
@@ -47,7 +48,8 @@ shinyServer(function(input, output) {
         small_anx_df <- Sym_of_anx_df%>% select(State, avg)%>%filter(Phase == input$anxPhase)%>%group_by(State)%>%distinct()
         ggplot(data = small_anx_df) + 
             geom_bar(mapping = aes(x = State, y = avg), stat = "identity",  show.legend = TRUE) +
-          labs(y = "% of Respondees With Some Level of Anxiety")
+          labs(y = "% of Respondees With Some Level of Anxiety") +
+          theme(axis.text.x=element_text(angle = 45))
     })
     
     Sym_of_dep_df <- Sym_of_dep_df%>% group_by(State, Phase)%>% mutate(avg = mean(Value))
@@ -55,7 +57,19 @@ shinyServer(function(input, output) {
         small_dep_df <- Sym_of_dep_df%>% select(State, avg)%>%filter(Phase == input$depPhase)%>%group_by(State)%>%distinct()
         ggplot(data = small_dep_df) + 
             geom_bar(mapping = aes(x = State, y = avg), stat = "identity", show.legend = TRUE)+
-          labs(y = "% of Respondees With Some Level of Depression")
+          labs(y = "% of Respondees With Some Level of Depression") +
+          theme(axis.text.x=element_text(angle = 45))
+    })
+    
+    or_by_average <- reactive({
+      Sym_of_dep_df <- Sym_of_dep_df %>% 
+        filter(Phase == input$orPhase) %>% 
+        select(State, Value) %>% 
+        arrange(desc(Value))
+    })
+    output$or_printing <- renderText({
+      paste0("The average percentage of respondants with some level of anxiety or depression across the country is ",
+             round(mean(or_by_average()$Value),2), "%. The top 5 states are:")
     })
 
 })
