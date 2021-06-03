@@ -61,7 +61,7 @@ shinyServer(function(input, output) {
     })
     
     or_by_average <- reactive({
-      Sym_of_dep_df <- Sym_of_dep_df %>% 
+      Sym_of_or_df <- Sym_of_or_df %>% 
         filter(Phase == input$orPhase) %>% 
         select(State, Value) %>% 
         arrange(desc(Value))
@@ -72,12 +72,13 @@ shinyServer(function(input, output) {
     })
     output$or_printing <- renderText({
       paste0("The average percentage of respondants with some level of anxiety or depression across the country is ",
-             round(mean(or_by_average()$Value),2), "%. Between phases one and two, the rate decreases slightly, 
-             but as the data goes into the beginning of phase 3, the data spikes, probably due to people thinking about
-             the holidays and not being able to spend it with the people they love. It is also the midpoint, meaning the 
-             luxuries the pandemic did give have faded and there is uncertantly for how much longer it will go on.
-             With the start of a new year, the rates drop slightly as a wave of optimism comes with the potential of a better
-             year. They furthur drop as news of a vaccine appears and regulations start slightly lifting.")
+             round(mean(or_by_average()$Value),2), "%. These values are expected to be higher since they are accounting
+             for both people experiencing anxiety syptoms and people experiencing depression symptoms.
+             Between phases one and two, the rate increases, and as the data goes into the beginning of phase 3, the data
+             spikes, probably due to people thinking about the holidays and not being able to spend it with the people 
+             they love. It is also the midpoint, meaning the luxuries the pandemic did give have faded and there is uncertanty
+             for how much longer it will go on. With the start of a new year, the rates drop slightly as a wave of optimism 
+             comes with the potential of a better year. They furthur drop as news of a vaccine appears and regulations start slightly lifting.")
     })
     
     
@@ -93,7 +94,11 @@ shinyServer(function(input, output) {
     })
     output$anx_printing <- renderText({
       paste0("The average percentage of respondants with some level of anxiety across the country is ",
-             round(mean(anx_by_average()$Value),2), "%.")
+             round(mean(anx_by_average()$Value),2), "%. The percentage of people with anxiety symptoms is higher overall than 
+             the other two categories, with a peak value of 36.18%. During phase 1, it begins at 30.69%, 6% higher than both people
+             depressive symptoms or either combined. With all of the uncertainty that erupted with the start of the pandemic, it it
+             logical that this value would be larger. It follow the same trend as the prior tab: increasing from phase 1,peaking at
+             the Phase 3 starting in January and then declining after that.")
     })
     
     dep_by_average <- reactive({
@@ -108,8 +113,8 @@ shinyServer(function(input, output) {
     })
     output$dep_printing <- renderText({
       paste0("The average percentage of respondants with some level of depression across the country is ",
-             round(mean(dep_by_average()$Value),2), "%.")
+             round(mean(dep_by_average()$Value),2), "%. The percentages overall of people experiencing depressive symptoms is lower
+             than the other two, but is still a significant amount, around 25%. It also follows the same pattern as the other two, 
+             peaking at the beginning of phase 3 and then going down again inside of 2021.")
     })
-    
-
 })
