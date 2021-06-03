@@ -37,8 +37,9 @@ shinyUI(navbarPage("Rates of Anxiety or Depression Symptoms during Covid-19",
                             sidebarLayout(
                               sidebarPanel(
                                 radioButtons("depPhase", label = "Phase of Pandemic", 
-                                             choices = unique(Sym_of_dep_df$Phase), 
+                                             choices = unique(Sym_of_dep_df$Phase),  
                                              selected = "1")
+
                               ),
                               mainPanel(
                                 plotOutput("plot_dep"), 
