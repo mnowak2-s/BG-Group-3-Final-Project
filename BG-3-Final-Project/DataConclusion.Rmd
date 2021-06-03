@@ -7,7 +7,9 @@ output: html_document
 
 ## Takeaways
 From our data, we can clearly see the increase of the amount of adults who reported symptoms of anxiety of depression in every State during the Coronavirus pandemic. Using phase 1 as our starting point, we can see as the three phases pass, more and more adults report that they are experiencing some kind of symptoms of anxiety or depression. This makes sense to us because people were forced into isolation and we, as a group, have also discussed how we have felt some of these symptoms during some period of the pandemic.
+
 <img src="www/Or_graph.jpg" alt="Anxiety or Depression Symptoms graph"/ width ="600">
+
 ## Our Data Quality
 Since our data is being taken from the CDC website, it gives unbiased results. The data is strictly reporting how many adults in the United States have experienced any Anxiety or Depression symptoms. We do not see any issues within the data that could potentially harm certain groups of people.
 
