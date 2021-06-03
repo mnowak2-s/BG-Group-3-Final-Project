@@ -33,9 +33,16 @@ shinyServer(function(input, output) {
                Diff_percent = case_when(row_number() == 1 ~ Value, TRUE ~ Diff_percent))
     
     # Plot outputs
-    Sym_of_or_df <- Sym_of_or_df%>% group_by(State, Phase)%>% mutate(avg = mean(Value))
+    Sym_of_or_df <- Sym_of_or_df%>% 
+      group_by(State, Phase)%>% 
+      mutate(avg = mean(Value))
+    
     output$plot_or <- renderPlot({
-        small_or_df <- Sym_of_or_df%>% select(State, avg)%>%filter(Phase == input$orPhase)%>%group_by(State)%>%distinct()
+        small_or_df <- Sym_of_or_df%>% 
+          select(State, avg)%>%
+          filter(Phase == input$orPhase)%>%
+          group_by(State)%>%
+          distinct()
         ggplot(data = small_or_df) + 
             geom_bar(mapping = aes(x = State, y = avg), stat = "identity",  show.legend = TRUE)+
             labs(y = "% of Respondees With Some Level of Anxiety or Depression") +

@@ -6,7 +6,7 @@ output: html_document
 ---
 Created by Madeleine Nowak, Makenzie Edwards, Bella Lee, and Kyle Raychel
 
-<img src="imgs/stressed-and-anxious-person.jpg" alt="img" width="400"/> <img src="imgs/news-headline.jpg" alt="img" width="400"/> 
+<img src="imgs/stressed-and-anxious-person.jpg" alt="stressed out person" width="400"/> <img src="imgs/news-headline.jpg" alt="Covid-19 headline" width="400"/> 
 
 
 ## Project Overview
