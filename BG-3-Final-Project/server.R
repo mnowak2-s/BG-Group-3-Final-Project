@@ -5,7 +5,6 @@ source("Dataframes.R")
 
 shinyServer(function(input, output) {
     
-    ## Data for the histogram, need to figure out how to put widget data into this
     Sym_of_or_df <- dataframe %>% 
         filter(Group == "By State", Indicator == "Symptoms of Anxiety Disorder or Depressive Disorder") %>% 
         group_by(State) %>% 
@@ -67,6 +66,10 @@ shinyServer(function(input, output) {
         select(State, Value) %>% 
         arrange(desc(Value))
     })
+    output$phaseTime_or <- renderText({
+      paste0("Phase 1 (Apr 23 - Jul 21, 2020), Phase 2 (Aug 19 - Oct 26, 2020), Phase 3 (Oct 28 - Dec 21, 2020), 
+             Phase 3 (Jan 6 - Mar 29, 2021), Phase 3.1 (Apr 14 - Apr 26, 2021)")
+    })
     output$or_printing <- renderText({
       paste0("The average percentage of respondants with some level of anxiety or depression across the country is ",
              round(mean(or_by_average()$Value),2), "%. Between phases one and two, the rate decreases slightly, 
@@ -77,11 +80,16 @@ shinyServer(function(input, output) {
              year. They furthur drop as news of a vaccine appears and regulations start slightly lifting.")
     })
     
+    
     anx_by_average <- reactive({
       Sym_of_anx_df <- Sym_of_anx_df %>% 
         filter(Phase == input$anxPhase) %>% 
         select(State, Value) %>% 
         arrange(desc(Value))
+    })
+    output$phaseTime_anx <- renderText({
+      paste0("Phase 1 (Apr 23 - Jul 21, 2020), Phase 2 (Aug 19 - Oct 26, 2020), Phase 3 (Oct 28 - Dec 21, 2020), 
+             Phase 3 (Jan 6 - Mar 29, 2021), Phase 3.1 (Apr 14 - Apr 26, 2021)")
     })
     output$anx_printing <- renderText({
       paste0("The average percentage of respondants with some level of anxiety across the country is ",
@@ -93,6 +101,10 @@ shinyServer(function(input, output) {
         filter(Phase == input$depPhase) %>% 
         select(State, Value) %>% 
         arrange(desc(Value))
+    })
+    output$phaseTime_dep <- renderText({
+      paste0("Phase 1 (Apr 23 - Jul 21, 2020), Phase 2 (Aug 19 - Oct 26, 2020), Phase 3 (Oct 28 - Dec 21, 2020), 
+             Phase 3 (Jan 6 - Mar 29, 2021), Phase 3.1 (Apr 14 - Apr 26, 2021)")
     })
     output$dep_printing <- renderText({
       paste0("The average percentage of respondants with some level of depression across the country is ",
