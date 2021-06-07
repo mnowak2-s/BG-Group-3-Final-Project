@@ -15,18 +15,28 @@ shinyServer(function(input, output) {
           filter(Phase == input$orPhase) %>%
           group_by(State) %>%
           distinct()
+        
         ggplot(data = small_or_df) + 
-            geom_bar(mapping = aes(x = reorder(State, avg), y = avg), stat = "identity",  show.legend = TRUE)+
-            labs(x = "State", y = "% of Respondees With Some Level of Anxiety or Depression") +
+          geom_bar(mapping = aes(x = reorder(State, avg), y = avg), stat = "identity",  show.legend = TRUE)+
+          labs(x = "State", y = "% of Respondees With Some Level of Anxiety or Depression") +
           theme(axis.text.x=element_text(angle = 45))
+
     })
     
-    Sym_of_anx_df <- Sym_of_anx_df%>% group_by(State, Phase)%>% mutate(avg = mean(Value))
+    Sym_of_anx_df <- Sym_of_anx_df %>% 
+      group_by(State, Phase) %>% 
+      mutate(avg = mean(Value))
+    
     output$plot_anx <- renderPlot({
-        small_anx_df <- Sym_of_anx_df%>% select(State, avg)%>%filter(Phase == input$anxPhase)%>%group_by(State)%>%distinct()
+        small_anx_df <- Sym_of_anx_df %>% 
+          select(State, avg) %>%
+          filter(Phase == input$anxPhase) %>%
+          group_by(State) %>%
+          distinct()
+        
         ggplot(data = small_anx_df) + 
             geom_bar(mapping = aes(x = reorder(State, avg), y = avg), stat = "identity",  show.legend = TRUE) +
-          labs(x = "State", y = "% of Respondees With Some Level of Anxiety") +
+          labs(x = "State", y = "% of Respondents With Some Level of Anxiety") +
           theme(axis.text.x=element_text(angle = 45))
     })
     
